@@ -2,14 +2,14 @@ group 'com.tiendung01023.zalo_flutter'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()
         jcenter()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath 'com.android.tools.build:gradle:8.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -29,6 +29,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace = "com.tiendung01023.zalo_flutter"
+    }
     compileSdkVersion 34
 
     sourceSets {
@@ -37,6 +40,13 @@ android {
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 34
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
     }
 }
 
